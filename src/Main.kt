@@ -4,13 +4,9 @@ fun main(){
     println("Hello World")
     var data = Database()
 
-    var c =  Customers("Peter", "a12345", 3, 2000.0)
+    var c =  Customers("PETER", "a12345", 3, 2000.0)
 
-    var d =  Customers("Dan", "a12345", 2, 1000.0)
-    Database.currentCustomers["Peter"] = c
-    Database.currentCustomers["Dan"] = d
-    var e = Employees()
-    e.listAllCustomer()
+    var d =  Customers("DAN", "a12345", 2, 1000.0)
 
 
 }

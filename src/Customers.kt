@@ -1,8 +1,11 @@
-class Customers(var userName:String="Default", var password:String="Default", var accountType:Int=0,
-    var balance:Double=0.0) : Person{
+class Customers(var userName:String, var password:String, var accountType:Int,
+    var balance:Double) : Person{
 
     val transHistory:MutableList<String> = mutableListOf()
     //deposit = 1, withdraw = 2, transfer = 3
+
+    //constructor
+    constructor():this("default","default",10,0.0)
 
     fun printHistory()
     {

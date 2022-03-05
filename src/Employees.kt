@@ -1,5 +1,5 @@
-open class Employees(var employeeName:String="", var password:String="",
-                       var accessLevel:Int=1)   : Person {
+open class Employees(open var employeeName:String="", open var password:String="",
+                      open var accessLevel:Int=1)   : Person {
 
 
     fun listAllCustomer(){
@@ -7,15 +7,15 @@ open class Employees(var employeeName:String="", var password:String="",
         {
             println("No Customers")
         }
-        println("+------------------+");
-        println("|List of Customers |");
-        println("+------------------+");
+        println("+------------------+")
+        println("|List of Customers |")
+        println("+------------------+")
 
         Database.currentCustomers.forEach { (k, v) ->  println(v.printCustomer())}
 
-        println("+------------------+");
-        println("|List of Customers |");
-        println("+------------------+");
+        println("+------------------+")
+        println("|List of Customers |")
+        println("+------------------+")
 
     }
 
@@ -24,15 +24,15 @@ open class Employees(var employeeName:String="", var password:String="",
         {
             println("No Applicants")
         }
-        println("+------------------+");
-        println("|List of Applicants|");
-        println("+------------------+");
+        println("+------------------+")
+        println("|List of Applicants|")
+        println("+------------------+")
 
         Database.appCustomers.forEach { (k, v) ->  println(v.printCustomer())}
 
-        println("+------------------+");
-        println("|List of Applicants|");
-        println("+------------------+");
+        println("+------------------+")
+        println("|List of Applicants|")
+        println("+------------------+")
 
     }
 
