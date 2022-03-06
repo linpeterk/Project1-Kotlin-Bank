@@ -62,7 +62,7 @@ open class Employees(
         {
             if(Main.data.appVerify(customerName))
             {
-                c= Main.data.findCustomers(customerName)!!
+                c= Main.data.findApplicant(customerName)!!
                 Main.data.newCustomers(c)
                 Main.data.removeApplication(customerName)
             }

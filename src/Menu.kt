@@ -108,7 +108,6 @@ class Menu {
             var c: Customers? = e.searchCustomers(name)
             if (c != null) //customer exist
             {
-                c.printC()
                 customerOptions(c)
             }
         } catch (e: InputMismatchException) {
@@ -268,7 +267,7 @@ class Menu {
                 adminMenu(e)
             }
             7 -> {
-                if(e is Admin) e.listAllCustomer()
+                if(e is Admin) e.listAllEmployees()
                 adminMenu(e)
             }
             9 -> {
@@ -339,9 +338,9 @@ class Menu {
             println("2. Existing Customer")
             println("3. Employee")
             println("0. Exit")
-            if (scan.hasNextInt()) {
-                input = scan.nextInt()
-                scan.nextLine() //clear buffer
+            if (Main.scan.hasNextInt()) {
+                input = Main.scan.nextInt()
+                Main.scan.nextLine() //clear buffer
                 //System.out.println(input);
                 if (input == 1) {
                     return "NCustomer"
@@ -358,7 +357,7 @@ class Menu {
             } else {
                 println("Not a number, please enter a number")
                 println()
-                scan.nextLine()
+                Main.scan.nextLine()
             }
         } while (input != 1 && input != 2 && input != 3)
         return "Exceptions"
