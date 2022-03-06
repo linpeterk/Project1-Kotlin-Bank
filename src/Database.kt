@@ -1,5 +1,4 @@
 import java.util.*
-import kotlin.collections.HashMap
 
 class Database {
 
@@ -12,8 +11,16 @@ class Database {
         val employees: HashMap<String, Employees> = HashMap<String, Employees>() //Customers waiting for approval
 
     }
+
+    fun findApplicant(userName: String): Customers? {
+        return appCustomers[userName.uppercase()]
+    }
     fun findCustomers(userName:String):Customers? {
         return currentCustomers[userName.uppercase()]
+    }
+
+    fun findEmployees(userName: String): Employees? {
+        return employees[userName.uppercase()]
     }
 
     fun applications(userName:String, password:String, accountType:Int, balance:Double)
@@ -32,9 +39,11 @@ class Database {
         currentCustomers[userName.uppercase()] = c
     }
 
-    fun newCustomers(c:Customers){println("Not yet implemented")}
+    fun newCustomers(c:Customers){
+        currentCustomers[c.userName.uppercase()] = c}
 
     fun newEmployee(userName:String, password: String, accessLevel:Int){
+
         var e:Employees = Employees(userName.uppercase(),password,accessLevel)
         employees[userName.uppercase()]=e
     }
@@ -124,13 +133,13 @@ class Database {
 
     fun appPrint(userName: String){
         var c:Customers? = appCustomers.get(userName.uppercase())
-        c?.printCustomer()
+        c?.printC()
 
     }
 
     fun customerPrint(userName: String){
         var c:Customers? = currentCustomers.get(userName.uppercase())
-        c?.printCustomer()
+        c?.printC()
 
     }
 

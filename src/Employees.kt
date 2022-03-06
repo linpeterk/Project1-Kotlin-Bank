@@ -1,6 +1,8 @@
-open class Employees(open var employeeName:String="", open var password:String="",
-                      open var accessLevel:Int=1)   : Person {
+open class Employees(
+    override var userName:String, override var password:String,
+    open var accessLevel:Int=1)   : Person {
 
+    constructor() : this("default", "default", 1)
 
     fun listAllCustomer(){
         if(Database.currentCustomers.isEmpty())
@@ -11,7 +13,7 @@ open class Employees(open var employeeName:String="", open var password:String="
         println("|List of Customers |")
         println("+------------------+")
 
-        Database.currentCustomers.forEach { (k, v) ->  println(v.printCustomer())}
+        Database.currentCustomers.forEach { (k, v) ->  println(v.printC())}
 
         println("+------------------+")
         println("|List of Customers |")
@@ -28,7 +30,7 @@ open class Employees(open var employeeName:String="", open var password:String="
         println("|List of Applicants|")
         println("+------------------+")
 
-        Database.appCustomers.forEach { (k, v) ->  println(v.printCustomer())}
+        Database.appCustomers.forEach { (k, v) ->  println(v.printC())}
 
         println("+------------------+")
         println("|List of Applicants|")
@@ -40,107 +42,47 @@ open class Employees(open var employeeName:String="", open var password:String="
         if(Main.data.customerVerify(customerName))
         {
             var c = Database.currentCustomers[customerName.uppercase()]
-            c!!.printCustomer()
+            c!!.printC()
             return c
         }
-        else return null
+        else {
+            println("No customer with user name $customerName")
+            return null
+        }
+    }
+    override fun printC(){
+
+        println("Username= $userName Password= $password Account Type= $accessLevel")
+
     }
 
-}
-/*
+    fun acceptApplicants(customerName:String){
+        var c:Customers
+        if(!Main.data.customerVerify(customerName))
+        {
+            if(Main.data.appVerify(customerName))
+            {
+                c= Main.data.findCustomers(customerName)!!
+                Main.data.newCustomers(c)
+                Main.data.removeApplication(customerName)
+            }
+            else{
+                println("Applicant don't Exist")
+            }
+        }
+        else{
+            println("Applicant is already a customer")
+        }
+    }
 
+    fun denyApplicants(customerName:String){
 
-		if (Database.customerVerify(customerName))
-		{
-			Customers c = Database.findCustomers(customerName);
-			c.printCustomer();
-			return c;
-		}
-		 else
-			 {
-			 	System.out.println("No customer with user name " + customerName);
-			 	return null;
-			 }
-
-	}
-
-	public String getUserName()
-	{
-		return employeeName;
-	}
-
-	// set user name
-	public void setUserName(String userName)
-	{
-		this.employeeName =  userName;
-	}
-
-
-	// get password
-	public String getPassword()
-	{
-		return password;
-	}
-
-	// set password
-	public void setPassword(String password)
-	{
-		this.password =  password;
-	}
-
-	// get accountType 1=checking 2=saving 3=joint account
-	public int getaccessLevel()
-	{
-		return accessLevel;
-	}
-
-		// set accountType
-	public void setaccessLevel(int access)
-	{
-		this.accessLevel =  access;
-	}
-
-	public void acceptApplicants(String customerName)
-	{
-		Customers c;
-		if(!Database.customerVerify(customerName))
-		{
-			if(Database.appVerify(customerName))
-			{
-				c = Database.findApplicant(customerName);
-				data.newCustomer(c);
-				data.removeApplication(customerName);
-			}
-			else {
-				System.out.println("Applicants don't exist");
-				return;
-			}
-		}
-		else {
-			System.out.println("Applicant is already a customer name");
-		}
-	}
-
-	public void denyApplicants(String customerName)
-	{
-		if(Database.appVerify(customerName))
-		{
-			data.removeApplication(customerName);
-		}
-		else {
-			System.out.println("Applicant user name doesn't exist");
-		}
-	}
-
-	public void printCustomer() // Print employees data
-
-	{
-		System.out.println("Username= " + this.employeeName + " Password= "+ this.password + " Account Type= " + this.accessLevel);
-	}
-
-
-
-
+        if(Main.data.appVerify(customerName)){
+            Main.data.removeApplication(customerName)
+        }
+        else{
+            println("Applicant name doesn't exist")
+        }
+    }
 }
 
- */
